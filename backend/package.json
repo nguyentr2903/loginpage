@@ -1,0 +1,32 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyentr2903/loginpage.git"
+  },
+  "keywords": [
+    "login",
+    "register",
+    "user"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyentr2903/loginpage/issues"
+  },
+  "homepage": "https://github.com/nguyentr2903/loginpage#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5"
+  }
+}

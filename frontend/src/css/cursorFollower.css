@@ -1,0 +1,27 @@
+/* CursorFollower.css */
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px; /* Adjust size */
+  height: 20px; /* Keep height and width equal for a perfect circle */
+  background: rgba(255, 105, 180, 0.8); /* Set a nice color */
+  border-radius: 50%; /* Makes it a circle */
+  pointer-events: none; /* Ensures it doesn't interfere with clicks */
+  transform: translate3d(-50%, -50%, 0); /* Centers the circle on the cursor */
+  transition: transform 0.1s ease-out, opacity 0.2s ease-out;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+  opacity: 0;
+  z-index: 9999;
+}
+  .cursor-follower.visible {
+    opacity: 1;
+  }
+  
+ 
+  .cursor-follower.hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 105, 180, 0.8);
+  }
+  
