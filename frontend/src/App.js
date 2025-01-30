@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./views/login";
 import Register from "./views/register";
 import "./App.css";
@@ -7,7 +7,7 @@ import CursorFollower from "./components/cursorFollower";
 function App() {
   return (
     //Router container of the entire application 
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/" element={<Login />} />
@@ -16,7 +16,7 @@ function App() {
         <CursorFollower />
       </div>
      
-    </Router>
+    </BrowserRouter>
   );
   
 }

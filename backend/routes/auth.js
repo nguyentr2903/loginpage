@@ -1,15 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/User');
 const router = express();
-const PORT = 3000;
-// Define a GET endpoint
 
+require("dotenv").config();
+const JWT_SECRET = process.env.JWT_SECRET;
 //registration route
-router.post('/register', async (req, res) => {
+router.post('api/auth/register', async (req, res) => {
 const { username, email, password } = req.body; 
 if (!username || !email || !password) {
     return res.status(400).json({ message: 'All fields are required' });
@@ -37,7 +37,7 @@ catch (error) {
 });
 
 //Login route 
-router.post('/login', async (req, res) => {
+router.post('api/auth/login', async (req, res) => {
     const { email, password } = req.body; 
     if (!email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
