@@ -31,5 +31,8 @@
   "homepage": "https://github.com/nguyentr2903/loginpage#readme",
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
