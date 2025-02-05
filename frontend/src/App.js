@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./views/login";
-import Register from "./views/register";
+import Login from "./components/login";
+import Register from "./components/register";
 import "./App.css";
 import CursorFollower from "./components/cursorFollower";
 function App() {

@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
-  "scripts": {
-    "start": "npm run start:backend && npm run start:frontend",
-    "start:backend": "cd backend && node server.js",
-    "start:frontend": "cd frontend && npm start",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm start",
-    "install:backend": "cd backend && npm install",
-    "install:frontend": "cd frontend && npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+"scripts": {
+  "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+  "start:backend": "cd backend && node server.js",
+  "start:frontend": "cd frontend && npm start",
+  "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+  "dev:backend": "cd backend && nodemon server.js",
+  "dev:frontend": "cd frontend && PORT=3001 npm start",
+  "install:backend": "cd backend && npm install",
+  "install:frontend": "cd frontend && npm install",
+  "test": "echo \"Error: no test specified\" && exit 1"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nguyentr2903/loginpage.git"
