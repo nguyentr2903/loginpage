@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/User');
@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
       email,
       password: hashedPassword,
     });
-
+    console.log('New Hashed Password:', hashedPassword);
     // Save user to database
     await newUser.save();
     res.status(201).json({ message: "Registration successful" });
@@ -57,35 +57,36 @@ router.post("/register", async (req, res) => {
 });
 
 //Login route 
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body; 
-    if (!email || !password) {
-        return res.status(400).json({ message: 'All fields are required' });
-        //check more cases 
-      }
-      //check if user exists
-      try {
-        const user = await User.findOns({email});
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-        //Check if password exists
-        const isFound = await bcrypt.compare(password, user.password);
-        if (!isFound) {
-            return res.status(400).json({ message: 'Invalid password' });
-        }
-        //create JWT token if valid 
-        const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
-            expiresIn: '1h',
-          });
+router.post("/login", async (req, res) => {
+  const { emailOrUsername, password } = req.body;
+  
+  // Find user by email or username
+  const user = await User.findOne({
+    $or: [{ email: emailOrUsername }, { username: emailOrUsername }],
+  });
+  
+  if (!user) {
+    return res.status(400).json({ message: "User not found." });
+  }
+  
+  // Compare entered password with stored password
+  console.log(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password);
+  
+  if (!isMatch) {
+  
+    return res.status(400).json({ message: "Invalid password." });
+  }
 
-        res.status(200).json({ message: 'User logged in', token });
-      }
-      catch (error) {
-        res.status(500).json({ message: 'Server error' });
-      }
-    
+  // Create JWT token
+  const token = jwt.sign({ userId: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
+  console.log(token);
+  // Respond with the token
+  res.status(200).json({
+    message: "Login successful!",
+    token: token,
+    user: { id: user._id, username: user.username }
+  });
 });
-
 
 module.exports = router;
