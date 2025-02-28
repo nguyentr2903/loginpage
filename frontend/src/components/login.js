@@ -13,17 +13,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (!formData.emailOrUsername || !formData.password) {
       setErrorMessage("All fields are required.");
       return;
     }
-
+    console.log(formData); 
     try {
       const response = await axios.post("http://localhost:5000/api/auth/login", formData);
       alert(response.data.message);
       setErrorMessage("");
     } catch (err) {
       setErrorMessage(err.response?.data?.message || "Invalid login attempt.");
+      console.log(err);
     }
   };
 

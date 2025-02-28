@@ -21,6 +21,10 @@ const client = new MongoClient(MONGO_URI, {
   }
 });
 app.use("/api/auth", authRoutes);
+app.use((err, req, res, next) => {
 
+  console.error("Server Error: ", err); // Log the error stack
+  res.status(500).send({ message: 'Something went wrong. Please try again later.' });
+});
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
